@@ -58,7 +58,7 @@ coffee: {self.resources["coffee"]} gr""")
         coffee_ingredient_water = int(input("Enter count of ml water: "))
         coffee_ingredient_milk = int(input("Enter count of ml milk: "))
         coffee_ingredient_coffee = int(input("Enter count of gr coffee: "))
-        coffee_cost = int(input(f"Enter {self.currency[0]} price of the coffee: ")) * self.currency[1][0]
+        coffee_cost = float(input(f"Enter {self.currency[0]} price of the coffee: ")) * self.currency[1][0]
         self.menu.append(coffee_name, {"water": coffee_ingredient_water, "milk": coffee_ingredient_milk, "coffee": coffee_ingredient_coffee}, coffee_cost)
 
     def add_resources(self):
@@ -78,7 +78,7 @@ coffee: {self.resources["coffee"]} gr""")
 
         coffee = self.menu.find_coffee(drink_input)
         have_ingredients = self.check_resources(coffee)
-        user_money = int(input(f"How much you spend {self.currency[0]}: ")) * self.currency[1][0]
+        user_money = float(input(f"How much you spend {self.currency[0]}: ")) * self.currency[1][0]
         have_money = True if coffee.cost <= user_money else False
         if have_money and have_ingredients:
             change = (user_money - coffee.cost) / self.currency[1][0]
