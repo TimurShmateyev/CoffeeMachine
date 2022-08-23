@@ -34,6 +34,11 @@ class CoffeeMachine:
                 have_ingredients_in_func = False
         return have_ingredients_in_func
 
+    def coking_coffee(self, coffee_ingredients: menu.Coffee):
+
+        for resource in self.resources.keys():
+            self.resources[resource] = self.resources[resource] - coffee_ingredients.ingredients[resource]
+
     def off(self):
         self.working = False
         os.system("CLS")
@@ -82,6 +87,7 @@ coffee: {self.resources["coffee"]} gr""")
         have_money = True if coffee.cost <= user_money else False
         if have_money and have_ingredients:
             change = (user_money - coffee.cost) / self.currency[1][0]
+            self.coking_coffee(coffee)
             self.dollars += coffee.cost
             print(f"Here is you change: {round(change, 2)}. Enjoy the coffee")
         elif not have_money:
